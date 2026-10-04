@@ -522,12 +522,6 @@ if (whatsappButton) {
             `Estimativa inicial: ${total}%0A%0A` +
             `Gostaria de saber mais detalhes.`;
 
-        /*
-         * Troque pelo seu número de WhatsApp.
-         * Exemplo:
-         * 5567999999999
-         */
-
         const phone =
             "5567999094900";
 
