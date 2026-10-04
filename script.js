@@ -83,11 +83,18 @@ if (introCanvas) {
         for (let i = 0; i < amount; i++) {
 
             introParticles.push({
+
                 x: Math.random() * introCanvas.width,
                 y: Math.random() * introCanvas.height,
+
                 size: Math.random() * 1.4 + .3,
-                speed: Math.random() * .3 + .05,
-                opacity: Math.random() * .5 + .1
+
+                speed:
+                    Math.random() * .3 + .05,
+
+                opacity:
+                    Math.random() * .5 + .1
+
             });
 
         }
@@ -107,8 +114,14 @@ if (introCanvas) {
             p.y -= p.speed;
 
             if (p.y < -5) {
-                p.y = introCanvas.height + 5;
-                p.x = Math.random() * introCanvas.width;
+
+                p.y =
+                    introCanvas.height + 5;
+
+                p.x =
+                    Math.random() *
+                    introCanvas.width;
+
             }
 
             ctx.beginPath();
@@ -128,19 +141,24 @@ if (introCanvas) {
 
         });
 
-        requestAnimationFrame(drawIntroParticles);
+        requestAnimationFrame(
+            drawIntroParticles
+        );
     }
 
     resizeIntroCanvas();
     createIntroParticles();
     drawIntroParticles();
 
-    window.addEventListener("resize", () => {
+    window.addEventListener(
+        "resize",
+        () => {
 
-        resizeIntroCanvas();
-        createIntroParticles();
+            resizeIntroCanvas();
+            createIntroParticles();
 
-    });
+        }
+    );
 }
 
 
@@ -153,14 +171,18 @@ const backgroundCanvas =
 
 if (backgroundCanvas) {
 
-    const ctx = backgroundCanvas.getContext("2d");
+    const ctx =
+        backgroundCanvas.getContext("2d");
 
     let particles = [];
 
     function resizeBackground() {
 
-        backgroundCanvas.width = window.innerWidth;
-        backgroundCanvas.height = window.innerHeight;
+        backgroundCanvas.width =
+            window.innerWidth;
+
+        backgroundCanvas.height =
+            window.innerHeight;
 
     }
 
@@ -177,14 +199,25 @@ if (backgroundCanvas) {
 
             particles.push({
 
-                x: Math.random() * backgroundCanvas.width,
-                y: Math.random() * backgroundCanvas.height,
+                x:
+                    Math.random() *
+                    backgroundCanvas.width,
 
-                vx: (Math.random() - .5) * .15,
-                vy: (Math.random() - .5) * .15,
+                y:
+                    Math.random() *
+                    backgroundCanvas.height,
 
-                size: Math.random() * 1.2 + .3,
-                opacity: Math.random() * .25 + .05
+                vx:
+                    (Math.random() - .5) * .15,
+
+                vy:
+                    (Math.random() - .5) * .15,
+
+                size:
+                    Math.random() * 1.2 + .3,
+
+                opacity:
+                    Math.random() * .25 + .05
 
             });
 
@@ -205,11 +238,21 @@ if (backgroundCanvas) {
             p.x += p.vx;
             p.y += p.vy;
 
-            if (p.x < 0) p.x = backgroundCanvas.width;
-            if (p.x > backgroundCanvas.width) p.x = 0;
+            if (p.x < 0) {
+                p.x = backgroundCanvas.width;
+            }
 
-            if (p.y < 0) p.y = backgroundCanvas.height;
-            if (p.y > backgroundCanvas.height) p.y = 0;
+            if (p.x > backgroundCanvas.width) {
+                p.x = 0;
+            }
+
+            if (p.y < 0) {
+                p.y = backgroundCanvas.height;
+            }
+
+            if (p.y > backgroundCanvas.height) {
+                p.y = 0;
+            }
 
             ctx.beginPath();
 
@@ -228,19 +271,24 @@ if (backgroundCanvas) {
 
         });
 
-        requestAnimationFrame(drawBackground);
+        requestAnimationFrame(
+            drawBackground
+        );
     }
 
     resizeBackground();
     createParticles();
     drawBackground();
 
-    window.addEventListener("resize", () => {
+    window.addEventListener(
+        "resize",
+        () => {
 
-        resizeBackground();
-        createParticles();
+            resizeBackground();
+            createParticles();
 
-    });
+        }
+    );
 }
 
 
@@ -248,8 +296,11 @@ if (backgroundCanvas) {
    CUSTOM CURSOR
 ========================================================= */
 
-const cursor = document.getElementById("cursor");
-const cursorRing = document.getElementById("cursorRing");
+const cursor =
+    document.getElementById("cursor");
+
+const cursorRing =
+    document.getElementById("cursorRing");
 
 if (
     cursor &&
@@ -263,45 +314,87 @@ if (
     let ringX = 0;
     let ringY = 0;
 
-    document.addEventListener("mousemove", e => {
+    document.addEventListener(
+        "mousemove",
+        e => {
 
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
 
-        cursor.style.left = `${mouseX}px`;
-        cursor.style.top = `${mouseY}px`;
+            cursor.style.left =
+                `${mouseX}px`;
 
-    });
+            cursor.style.top =
+                `${mouseY}px`;
+
+        }
+    );
 
     function animateCursor() {
 
-        ringX += (mouseX - ringX) * .15;
-        ringY += (mouseY - ringY) * .15;
+        ringX +=
+            (mouseX - ringX) * .15;
 
-        cursorRing.style.left = `${ringX}px`;
-        cursorRing.style.top = `${ringY}px`;
+        ringY +=
+            (mouseY - ringY) * .15;
 
-        requestAnimationFrame(animateCursor);
+        cursorRing.style.left =
+            `${ringX}px`;
+
+        cursorRing.style.top =
+            `${ringY}px`;
+
+        requestAnimationFrame(
+            animateCursor
+        );
     }
 
     animateCursor();
 
     const hoverElements =
         document.querySelectorAll(
-            "a, button, .tech-card, .process-card, .stat-card, .browser-window, .option, .extras label"
+            `
+            a,
+            button,
+            .tech-card,
+            .process-card,
+            .stat-card,
+            .browser-window,
+            .volt-browser,
+            .option,
+            .extras label,
+            .project-link,
+            .volt-product
+            `
         );
 
-    hoverElements.forEach(element => {
+    hoverElements.forEach(
+        element => {
 
-        element.addEventListener("mouseenter", () => {
-            document.body.classList.add("cursor-hover");
-        });
+            element.addEventListener(
+                "mouseenter",
+                () => {
 
-        element.addEventListener("mouseleave", () => {
-            document.body.classList.remove("cursor-hover");
-        });
+                    document.body.classList.add(
+                        "cursor-hover"
+                    );
 
-    });
+                }
+            );
+
+            element.addEventListener(
+                "mouseleave",
+                () => {
+
+                    document.body.classList.remove(
+                        "cursor-hover"
+                    );
+
+                }
+            );
+
+        }
+    );
 }
 
 
@@ -317,45 +410,59 @@ const mainNav =
 
 if (mobileMenu && mainNav) {
 
-    mobileMenu.addEventListener("click", () => {
+    mobileMenu.addEventListener(
+        "click",
+        () => {
 
-        mainNav.classList.toggle("mobile-open");
-
-        const icon =
-            mobileMenu.querySelector("i");
-
-        if (
-            mainNav.classList.contains("mobile-open")
-        ) {
-
-            icon.className =
-                "fa-solid fa-xmark";
-
-        } else {
-
-            icon.className =
-                "fa-solid fa-bars";
-
-        }
-
-    });
-
-
-    mainNav.querySelectorAll("a").forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            mainNav.classList.remove("mobile-open");
+            mainNav.classList.toggle(
+                "mobile-open"
+            );
 
             const icon =
                 mobileMenu.querySelector("i");
 
-            icon.className =
-                "fa-solid fa-bars";
+            if (
+                mainNav.classList.contains(
+                    "mobile-open"
+                )
+            ) {
+
+                icon.className =
+                    "fa-solid fa-xmark";
+
+            } else {
+
+                icon.className =
+                    "fa-solid fa-bars";
+
+            }
+
+        }
+    );
+
+
+    mainNav
+        .querySelectorAll("a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    mainNav.classList.remove(
+                        "mobile-open"
+                    );
+
+                    const icon =
+                        mobileMenu.querySelector("i");
+
+                    icon.className =
+                        "fa-solid fa-bars";
+
+                }
+            );
 
         });
-
-    });
 }
 
 
@@ -373,9 +480,13 @@ const revealObserver =
 
             entries.forEach(entry => {
 
-                if (entry.isIntersecting) {
+                if (
+                    entry.isIntersecting
+                ) {
 
-                    entry.target.classList.add("visible");
+                    entry.target.classList.add(
+                        "visible"
+                    );
 
                     revealObserver.unobserve(
                         entry.target
@@ -393,9 +504,15 @@ const revealObserver =
 
     );
 
-revealElements.forEach(element => {
-    revealObserver.observe(element);
-});
+revealElements.forEach(
+    element => {
+
+        revealObserver.observe(
+            element
+        );
+
+    }
+);
 
 
 /* =========================================================
@@ -405,20 +522,179 @@ revealElements.forEach(element => {
 const heroVisual =
     document.querySelector(".hero-visual");
 
-if (heroVisual && window.matchMedia("(pointer: fine)").matches) {
+if (
+    heroVisual &&
+    window.matchMedia("(pointer: fine)").matches
+) {
 
-    document.addEventListener("mousemove", e => {
+    document.addEventListener(
+        "mousemove",
+        e => {
 
-        const x =
-            (e.clientX / window.innerWidth - .5);
+            const x =
+                e.clientX /
+                window.innerWidth - .5;
 
-        const y =
-            (e.clientY / window.innerHeight - .5);
+            const y =
+                e.clientY /
+                window.innerHeight - .5;
 
-        heroVisual.style.transform =
-            `translate(${x * 12}px, ${y * 12}px)`;
+            heroVisual.style.transform =
+                `translate(${x * 12}px, ${y * 12}px)`;
 
-    });
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PROJECT VISUAL INTERACTION
+========================================================= */
+
+/*
+   Pequena interação para os projetos.
+
+   Quando o usuário passa o mouse pelo mockup,
+   adicionamos uma classe para permitir que o CSS
+   faça efeitos de destaque.
+*/
+
+const projectVisuals =
+    document.querySelectorAll(
+        ".browser-window, .volt-browser"
+    );
+
+projectVisuals.forEach(
+    visual => {
+
+        visual.addEventListener(
+            "mouseenter",
+            () => {
+
+                visual.classList.add(
+                    "project-hover"
+                );
+
+            }
+        );
+
+        visual.addEventListener(
+            "mouseleave",
+            () => {
+
+                visual.classList.remove(
+                    "project-hover"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   VOLT SNEAKERS
+========================================================= */
+
+const voltProject =
+    document.querySelector(
+        ".volt-project"
+    );
+
+if (voltProject) {
+
+    const voltBrowser =
+        voltProject.querySelector(
+            ".volt-browser"
+        );
+
+    if (voltBrowser) {
+
+        let voltX = 0;
+        let voltY = 0;
+
+        voltBrowser.addEventListener(
+            "mousemove",
+            e => {
+
+                if (
+                    window.innerWidth <= 760
+                ) {
+                    return;
+                }
+
+                const rect =
+                    voltBrowser.getBoundingClientRect();
+
+                const x =
+                    (e.clientX - rect.left) /
+                    rect.width;
+
+                const y =
+                    (e.clientY - rect.top) /
+                    rect.height;
+
+                voltX =
+                    (x - .5) * 8;
+
+                voltY =
+                    (y - .5) * -8;
+
+                voltBrowser.style.setProperty(
+                    "--volt-x",
+                    `${voltX}px`
+                );
+
+                voltBrowser.style.setProperty(
+                    "--volt-y",
+                    `${voltY}px`
+                );
+
+            }
+        );
+
+        voltBrowser.addEventListener(
+            "mouseleave",
+            () => {
+
+                voltBrowser.style.setProperty(
+                    "--volt-x",
+                    "0px"
+                );
+
+                voltBrowser.style.setProperty(
+                    "--volt-y",
+                    "0px"
+                );
+
+            }
+        );
+
+    }
+
+
+    /*
+       Animação dos cards de produto
+       dentro do mockup VOLT.
+    */
+
+    const voltProducts =
+        voltProject.querySelectorAll(
+            ".volt-product"
+        );
+
+    voltProducts.forEach(
+        (product, index) => {
+
+            product.style.setProperty(
+                "--product-delay",
+                `${index * 100}ms`
+            );
+
+        }
+    );
 
 }
 
@@ -435,7 +711,12 @@ const totalPrice =
 
 function calculateBudget() {
 
-    if (!budgetForm || !totalPrice) return;
+    if (
+        !budgetForm ||
+        !totalPrice
+    ) {
+        return;
+    }
 
     const selectedProject =
         budgetForm.querySelector(
@@ -457,21 +738,26 @@ function calculateBudget() {
             'input[type="checkbox"][data-price]'
         );
 
-    extras.forEach(extra => {
+    extras.forEach(
+        extra => {
 
-        if (extra.checked) {
+            if (extra.checked) {
 
-            total += Number(
-                extra.dataset.price || 0
-            );
+                total += Number(
+                    extra.dataset.price || 0
+                );
+
+            }
 
         }
-
-    });
+    );
 
     totalPrice.textContent =
-        total >= 2500 && selectedProject?.value === "custom"
+        total >= 2500 &&
+        selectedProject?.value === "custom"
+
             ? `R$ ${total.toLocaleString("pt-BR")}+`
+
             : `R$ ${total.toLocaleString("pt-BR")}`;
 
 }
@@ -494,43 +780,52 @@ if (budgetForm) {
 ========================================================= */
 
 const whatsappButton =
-    document.getElementById("whatsappButton");
+    document.getElementById(
+        "whatsappButton"
+    );
 
 if (whatsappButton) {
 
-    whatsappButton.addEventListener("click", () => {
+    whatsappButton.addEventListener(
+        "click",
+        () => {
 
-        const selectedProject =
-            document.querySelector(
-                'input[name="project"]:checked'
+            const selectedProject =
+                document.querySelector(
+                    'input[name="project"]:checked'
+                );
+
+            const projectName =
+                selectedProject
+                    ?.parentElement
+                    ?.querySelector(
+                        ".option-box span"
+                    )
+                    ?.textContent
+                    ?.trim() ||
+                "Projeto";
+
+            const total =
+                document.getElementById(
+                    "totalPrice"
+                )?.textContent || "";
+
+            const message =
+                `Olá, Victor! Vi seu portfólio e gostaria de conversar sobre um projeto.%0A%0A` +
+                `Projeto: ${projectName}%0A` +
+                `Estimativa inicial: ${total}%0A%0A` +
+                `Gostaria de saber mais detalhes.`;
+
+            const phone =
+                "5567999094900";
+
+            window.open(
+                `https://wa.me/${phone}?text=${message}`,
+                "_blank"
             );
 
-        const projectName =
-            selectedProject?.parentElement
-                ?.querySelector(".option-box span")
-                ?.textContent
-                ?.trim() || "Projeto";
-
-        const total =
-            document.getElementById(
-                "totalPrice"
-            )?.textContent || "";
-
-        const message =
-            `Olá, Victor! Vi seu portfólio e gostaria de conversar sobre um projeto.%0A%0A` +
-            `Projeto: ${projectName}%0A` +
-            `Estimativa inicial: ${total}%0A%0A` +
-            `Gostaria de saber mais detalhes.`;
-
-        const phone =
-            "5567999094900";
-
-        window.open(
-            `https://wa.me/${phone}?text=${message}`,
-            "_blank"
-        );
-
-    });
+        }
+    );
 
 }
 
@@ -540,39 +835,56 @@ if (whatsappButton) {
 ========================================================= */
 
 const terminal =
-    document.getElementById("terminal");
+    document.getElementById(
+        "terminal"
+    );
 
 const terminalOpen =
-    document.getElementById("terminalOpen");
+    document.getElementById(
+        "terminalOpen"
+    );
 
 const terminalClose =
-    document.getElementById("terminalClose");
+    document.getElementById(
+        "terminalClose"
+    );
 
 const terminalInput =
-    document.getElementById("terminalInput");
+    document.getElementById(
+        "terminalInput"
+    );
 
 const terminalOutput =
-    document.getElementById("terminalOutput");
+    document.getElementById(
+        "terminalOutput"
+    );
 
 
 function openTerminal() {
 
     if (!terminal) return;
 
-    terminal.classList.add("active");
+    terminal.classList.add(
+        "active"
+    );
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        terminalInput?.focus();
+            terminalInput?.focus();
 
-    }, 300);
+        },
+        300
+    );
 
 }
 
 
 function closeTerminal() {
 
-    terminal?.classList.remove("active");
+    terminal?.classList.remove(
+        "active"
+    );
 
 }
 
@@ -586,6 +898,7 @@ if (terminalOpen) {
 
 }
 
+
 if (terminalClose) {
 
     terminalClose.addEventListener(
@@ -598,15 +911,20 @@ if (terminalClose) {
 
 if (terminal) {
 
-    terminal.addEventListener("click", e => {
+    terminal.addEventListener(
+        "click",
+        e => {
 
-        if (e.target === terminal) {
+            if (
+                e.target === terminal
+            ) {
 
-            closeTerminal();
+                closeTerminal();
+
+            }
 
         }
-
-    });
+    );
 
 }
 
@@ -619,17 +937,23 @@ function terminalWrite(
     if (!terminalOutput) return;
 
     const line =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     if (className) {
 
-        line.className = className;
+        line.className =
+            className;
 
     }
 
-    line.innerHTML = text;
+    line.innerHTML =
+        text;
 
-    terminalOutput.appendChild(line);
+    terminalOutput.appendChild(
+        line
+    );
 
     terminalOutput.scrollTop =
         terminalOutput.scrollHeight;
@@ -666,7 +990,7 @@ function executeCommand(command) {
             );
 
             terminalWrite(
-                "projects — projeto em destaque"
+                "projects — projetos em destaque"
             );
 
             terminalWrite(
@@ -707,6 +1031,51 @@ function executeCommand(command) {
 
             terminalWrite(
                 "https://albanotrader.com.br"
+            );
+
+            terminalWrite(
+                "02 — VOLT Sneakers",
+                "success"
+            );
+
+            terminalWrite(
+                "https://volt-sneakers.onrender.com"
+            );
+
+            terminalWrite(
+                "GitHub: https://github.com/VictorRamosWeBDev/volt-sneakers.git"
+            );
+
+            break;
+
+
+        case "albano":
+
+            terminalWrite(
+                "PROJECT 001 — ALBANO TRADER",
+                "success"
+            );
+
+            terminalWrite(
+                "https://albanotrader.com.br"
+            );
+
+            break;
+
+
+        case "volt":
+
+            terminalWrite(
+                "PROJECT 002 — VOLT SNEAKERS",
+                "success"
+            );
+
+            terminalWrite(
+                "E-commerce concept / Interactive Front-End"
+            );
+
+            terminalWrite(
+                "https://volt-sneakers.onrender.com"
             );
 
             break;
@@ -784,14 +1153,20 @@ if (terminalInput) {
         "keydown",
         e => {
 
-            if (e.key !== "Enter") return;
+            if (
+                e.key !== "Enter"
+            ) {
+                return;
+            }
 
             const command =
                 terminalInput.value;
 
             terminalInput.value = "";
 
-            executeCommand(command);
+            executeCommand(
+                command
+            );
 
         }
     );
@@ -803,15 +1178,20 @@ if (terminalInput) {
    ESC FECHA TERMINAL
 ========================================================= */
 
-document.addEventListener("keydown", e => {
+document.addEventListener(
+    "keydown",
+    e => {
 
-    if (e.key === "Escape") {
+        if (
+            e.key === "Escape"
+        ) {
 
-        closeTerminal();
+            closeTerminal();
+
+        }
 
     }
-
-});
+);
 
 
 /* =========================================================
@@ -833,32 +1213,40 @@ const navObserver =
 
         entries => {
 
-            entries.forEach(entry => {
-
-                if (!entry.isIntersecting) {
-                    return;
-                }
-
-                navLinks.forEach(link => {
-
-                    link.classList.remove(
-                        "active"
-                    );
+            entries.forEach(
+                entry => {
 
                     if (
-                        link.getAttribute("href") ===
-                        `#${entry.target.id}`
+                        !entry.isIntersecting
                     ) {
-
-                        link.classList.add(
-                            "active"
-                        );
-
+                        return;
                     }
 
-                });
+                    navLinks.forEach(
+                        link => {
 
-            });
+                            link.classList.remove(
+                                "active"
+                            );
+
+                            if (
+                                link.getAttribute(
+                                    "href"
+                                ) ===
+                                `#${entry.target.id}`
+                            ) {
+
+                                link.classList.add(
+                                    "active"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
 
         },
 
@@ -869,11 +1257,107 @@ const navObserver =
 
     );
 
-sections.forEach(section => {
+sections.forEach(
+    section => {
 
-    navObserver.observe(section);
+        navObserver.observe(
+            section
+        );
 
-});
+    }
+);
+
+
+/* =========================================================
+   SMOOTH PROJECT LINKS
+========================================================= */
+
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            e => {
+
+                const targetId =
+                    link.getAttribute(
+                        "href"
+                    );
+
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) {
+                    return;
+                }
+
+                const target =
+                    document.querySelector(
+                        targetId
+                    );
+
+                if (!target) {
+                    return;
+                }
+
+                e.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   EXTERNAL PROJECT LINKS
+========================================================= */
+
+document
+    .querySelectorAll(
+        'a[target="_blank"]'
+    )
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                console.log(
+                    `%cOpening project: ${link.href}`,
+                    "color:#00eaff;"
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   PROJECT COUNTER
+========================================================= */
+
+const projectCards =
+    document.querySelectorAll(
+        ".featured-project, .volt-project"
+    );
+
+if (projectCards.length) {
+
+    console.log(
+        `%c${projectCards.length} project(s) loaded.`,
+        "color:#20e59a;font-weight:bold;"
+    );
+
+}
 
 
 /* =========================================================
@@ -888,4 +1372,9 @@ console.log(
 console.log(
     "%cPortfolio system initialized.",
     "color:#20e59a;"
+);
+
+console.log(
+    "%cProjects: Albano Trader + VOLT Sneakers",
+    "color:#ff2d8d;font-weight:bold;"
 );
