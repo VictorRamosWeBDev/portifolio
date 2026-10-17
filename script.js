@@ -361,9 +361,9 @@ if (
             .stat-card,
             .browser-window,
             .volt-browser,
-            .option,
-            .extras label,
             .project-link,
+            .contact-card,
+            .contact-main-button,
             .volt-product
             `
         );
@@ -552,14 +552,6 @@ if (
    PROJECT VISUAL INTERACTION
 ========================================================= */
 
-/*
-   Pequena interação para os projetos.
-
-   Quando o usuário passa o mouse pelo mockup,
-   adicionamos uma classe para permitir que o CSS
-   faça efeitos de destaque.
-*/
-
 const projectVisuals =
     document.querySelectorAll(
         ".browser-window, .volt-browser"
@@ -675,10 +667,9 @@ if (voltProject) {
     }
 
 
-    /*
-       Animação dos cards de produto
-       dentro do mockup VOLT.
-    */
+    /* =====================================================
+       ANIMAÇÃO DOS CARDS DE PRODUTO
+    ===================================================== */
 
     const voltProducts =
         voltProject.querySelectorAll(
@@ -691,137 +682,6 @@ if (voltProject) {
             product.style.setProperty(
                 "--product-delay",
                 `${index * 100}ms`
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   BUDGET CALCULATOR
-========================================================= */
-
-const budgetForm =
-    document.getElementById("budgetForm");
-
-const totalPrice =
-    document.getElementById("totalPrice");
-
-function calculateBudget() {
-
-    if (
-        !budgetForm ||
-        !totalPrice
-    ) {
-        return;
-    }
-
-    const selectedProject =
-        budgetForm.querySelector(
-            'input[name="project"]:checked'
-        );
-
-    let total = 0;
-
-    if (selectedProject) {
-
-        total += Number(
-            selectedProject.dataset.price || 0
-        );
-
-    }
-
-    const extras =
-        budgetForm.querySelectorAll(
-            'input[type="checkbox"][data-price]'
-        );
-
-    extras.forEach(
-        extra => {
-
-            if (extra.checked) {
-
-                total += Number(
-                    extra.dataset.price || 0
-                );
-
-            }
-
-        }
-    );
-
-    totalPrice.textContent =
-        total >= 2500 &&
-        selectedProject?.value === "custom"
-
-            ? `R$ ${total.toLocaleString("pt-BR")}+`
-
-            : `R$ ${total.toLocaleString("pt-BR")}`;
-
-}
-
-
-if (budgetForm) {
-
-    budgetForm.addEventListener(
-        "change",
-        calculateBudget
-    );
-
-    calculateBudget();
-
-}
-
-
-/* =========================================================
-   WHATSAPP
-========================================================= */
-
-const whatsappButton =
-    document.getElementById(
-        "whatsappButton"
-    );
-
-if (whatsappButton) {
-
-    whatsappButton.addEventListener(
-        "click",
-        () => {
-
-            const selectedProject =
-                document.querySelector(
-                    'input[name="project"]:checked'
-                );
-
-            const projectName =
-                selectedProject
-                    ?.parentElement
-                    ?.querySelector(
-                        ".option-box span"
-                    )
-                    ?.textContent
-                    ?.trim() ||
-                "Projeto";
-
-            const total =
-                document.getElementById(
-                    "totalPrice"
-                )?.textContent || "";
-
-            const message =
-                `Olá, Victor! Vi seu portfólio e gostaria de conversar sobre um projeto.%0A%0A` +
-                `Projeto: ${projectName}%0A` +
-                `Estimativa inicial: ${total}%0A%0A` +
-                `Gostaria de saber mais detalhes.`;
-
-            const phone =
-                "5567999094900";
-
-            window.open(
-                `https://wa.me/${phone}?text=${message}`,
-                "_blank"
             );
 
         }
@@ -1099,7 +959,11 @@ function executeCommand(command) {
             );
 
             terminalWrite(
-                "Use a seção de contato para solicitar um orçamento."
+                "Entre em contato através da seção de contato."
+            );
+
+            terminalWrite(
+                "E-mail / WhatsApp / Instagram"
             );
 
             break;
